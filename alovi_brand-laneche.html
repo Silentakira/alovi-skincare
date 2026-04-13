@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lanèche - Professionele huidverzorging. Wetenschappelijk ontwikkeld, effectief en huidvriendelijk.">
+  <title>Lanèche | Alovi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f4f2ed;
+      --cream-light: #f9f7f3;
+      --black: #1a1a18;
+      --text-muted: #6a6a64;
+      --sage-warm: #8a9478;
+      --laneche-warm: #c9b49a;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.75;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      width: calc(100% - 64px);
+      max-width: 600px;
+    }
+
+    .nav-pill {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 100px;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 24px rgba(26, 26, 24, 0.04);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--black);
+    }
+
+    .nav-link.active {
+      color: var(--laneche-warm);
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--black);
+    }
+
+    .brand-hero {
+      background: linear-gradient(135deg, var(--laneche-warm) 0%, #dcd3c5 100%);
+      padding: 140px 32px 80px;
+      text-align: center;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: clamp(56px, 10vw, 96px);
+      font-weight: 400;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .brand-tagline {
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 24px;
+    }
+
+    .brand-description {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .section {
+      padding: 80px 32px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 36px);
+      font-weight: 400;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: transform var(--transition-base);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      aspect-ratio: 4/5;
+      background: var(--cream-light);
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 16px;
+    }
+
+    .product-name {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 14px;
+      color: var(--laneche-warm);
+      font-weight: 500;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .feature-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-pill">
+      <a class="nav-logo" href="alovi_landing_final.html">alovi</a>
+      <div class="nav-links">
+        <a href="alovi_products.html" class="nav-link">Producten</a>
+        <a href="alovi_brand-laneche.html" class="nav-link active">Lanèche</a>
+        <a href="alovi_brand-courtin.html" class="nav-link">Courtin</a>
+        <a href="alovi_about.html" class="nav-link">Over ons</a>
+        <a href="alovi_contact.html" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="brand-hero">
+    <h1 class="brand-name">Lanèche</h1>
+    <p class="brand-tagline">Professionele huidverzorging</p>
+    <p class="brand-description">Wetenschappelijk ontwikkeld, effectief en huidvriendelijk. Een compleet assortiment voor de professionele behandeling en thuisverzorging.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Het merk</h2>
+      <p class="section-text">Lanèche is ontwikkeld door huidtherapeuten met decades aan ervaring. Elk product is gebaseerd op de laatste wetenschappelijke inzichten en bevat hoogwaardige ingrediënten die bewezen effectief zijn.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔬</div>
+          <h3 class="feature-title">Wetenschappelijk bewezen</h3>
+          <p class="feature-text">Elk ingrediënt is zorgvuldig geselecteerd op basis van wetenschappelijk onderzoek naar werkzaamheid en veiligheid.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">💎</div>
+          <h3 class="feature-title">Premium kwaliteit</h3>
+          <p class="feature-text">Alleen de beste ingrediënten, in optimale concentraties voor maximale effectiviteit.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🌱</div>
+          <h3 class="feature-title">Huidvriendelijk</h3>
+          <p class="feature-text">Zelfs voor de meest gevoelige huid. Vrij van irriterende stoffen en onnodige toevoegingen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--cream-light);">
+    <div class="container">
+      <h2 class="section-title">Producten</h2>
+      <p class="section-text">Ontdek het volledige Lanèche assortiment.</p>
+
+      <div class="products-grid">
+        <a href="alovi_product.html" class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=400&h=500&fit=crop" alt="Level 00 Pro Care">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Level 00 Pro Care</h3>
+            <p class="product-price">€34,50</p>
+          </div>
+        </a>
+
+        <a href="alovi_product.html" class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=400&h=500&fit=crop" alt="Moisturizer Rich">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Moisturizer Rich</h3>
+            <p class="product-price">€42,00</p>
+          </div>
+        </a>
+
+        <a href="alovi_product.html" class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=500&fit=crop" alt="Gentle Cleanser">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Gentle Cleanser</h3>
+            <p class="product-price">€28,50</p>
+          </div>
+        </a>
+
+        <a href="alovi_product.html" class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=500&fit=crop" alt="Vitamin C Serum">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Vitamin C Serum</h3>
+            <p class="product-price">€48,00</p>
+          </div>
+        </a>
+
+        <a href="alovi_product.html" class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400&h=500&fit=crop" alt="Night Cream Luxe">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Night Cream Luxe</h3>
+            <p class="product-price">€38,00</p>
+          </div>
+        </a>
+
+        <a href="alovi_product.html" class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=500&fit=crop" alt="Foaming Cleanser">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Foaming Cleanser</h3>
+            <p class="product-price">€32,00</p>
+          </div>
+        </a>
+
+        <a href="alovi_product.html" class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=400&h=500&fit=crop" alt="Hyaluron Complex">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Hyaluron Complex</h3>
+            <p class="product-price">€52,00</p>
+          </div>
+        </a>
+
+        <a href="alovi_products.html" class="product-card" style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: var(--laneche-warm); color: white;">
+          <div style="text-align: center;">
+            <p style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Bekijk alles</p>
+            <p style="font-size: 24px;">→</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

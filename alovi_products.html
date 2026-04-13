@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ontdek ons volledige assortiment Lanèche en Courtin huidverzorgingsproducten. Professionele verzorging voor thuis.">
+  <title>Alle Producten | Alovi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f4f2ed;
+      --cream-light: #f9f7f3;
+      --cream-warm: #f0ede7;
+      --cream-dark: #e8e6e1;
+      --warm-white: #fbf9f6;
+      --black: #1a1a18;
+      --black-soft: #2a2a28;
+      --text-muted: #6a6a64;
+      --text-light: #9a9a94;
+      --sage: #8a9a88;
+      --sage-warm: #8a9478;
+      --sage-muted: #9aaa94;
+      --sage-pale: #d4dacd;
+      --sage-ghost: rgba(138, 154, 136, 0.06);
+
+      --transition-fast: 250ms ease-out;
+      --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+      --focus-ring: 0 0 0 3px rgba(138, 148, 120, 0.4);
+      --focus-ring-offset: 0 0 0 5px var(--warm-white);
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.75;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: opacity var(--transition-fast);
+    }
+
+    a:hover {
+      opacity: 0.65;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring), var(--focus-ring-offset);
+      border-radius: 4px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      z-index: 100;
+      width: calc(100% - 64px);
+      max-width: 600px;
+      transition: transform var(--transition-base);
+    }
+
+    .nav.nav-hidden {
+      transform: translateX(-50%) translateY(-150%);
+    }
+
+    .nav-pill {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 100px;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 24px rgba(26, 26, 24, 0.04), 0 1px 3px rgba(26, 26, 24, 0.02);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black-soft);
+      letter-spacing: 0.02em;
+      transition: color var(--transition-fast);
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--sage-warm);
+      transition: width var(--transition-base);
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      opacity: 1;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      color: var(--black);
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--black);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 22px;
+      height: 22px;
+      stroke: var(--black);
+      fill: none;
+      stroke-width: 1.4;
+      cursor: pointer;
+      opacity: 0.65;
+      transition: opacity var(--transition-fast), transform var(--transition-base), stroke var(--transition-fast);
+      border-radius: 4px;
+      padding: 2px;
+    }
+
+    .nav-icon:hover {
+      opacity: 1;
+      transform: scale(1.08);
+      stroke: var(--sage-warm);
+    }
+
+    .cart-count {
+      position: relative;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--sage-warm);
+      color: var(--warm-white);
+      font-size: 10px;
+      font-weight: 500;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-header {
+      padding: 120px 32px 60px;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .shop-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+    }
+
+    .filters {
+      position: sticky;
+      top: 120px;
+      align-self: start;
+    }
+
+    .filter-section {
+      margin-bottom: 32px;
+    }
+
+    .filter-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .filter-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--sage);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-checkbox.checked {
+      background: var(--sage-warm);
+      border-color: var(--sage-warm);
+    }
+
+    .filter-checkbox svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--warm-white);
+      fill: none;
+      stroke-width: 2;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .filter-checkbox.checked svg {
+      opacity: 1;
+    }
+
+    .filter-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .search-bar {
+      margin-bottom: 32px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--cream-dark);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      background: var(--warm-white);
+      transition: border-color var(--transition-fast);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--sage-warm);
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .results-count {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .sort-select {
+      padding: 10px 16px;
+      border: 1px solid var(--cream-dark);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      background: var(--warm-white);
+      cursor: pointer;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      cursor: pointer;
+      transition: transform var(--transition-base);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      aspect-ratio: 4/5;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-light);
+      border-radius: 8px;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--black);
+      color: var(--cream);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      padding: 6px 12px;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-radius: 4px;
+    }
+
+    .product-brand {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage-warm);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .product-name {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .product-price {
+      font-size: 14px;
+      color: var(--sage-warm);
+      font-weight: 500;
+    }
+
+    .btn-add-cart {
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px 20px;
+      background: var(--black);
+      color: var(--cream);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .product-card:hover .btn-add-cart {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-add-cart:hover {
+      background: var(--sage-warm);
+    }
+
+    @media (max-width: 1024px) {
+      .shop-container {
+        grid-template-columns: 1fr;
+      }
+
+      .filters {
+        display: none;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        top: 16px;
+        width: calc(100% - 32px);
+      }
+
+      .nav-pill {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-header {
+        padding: 100px 20px 40px;
+      }
+
+      .shop-container {
+        padding: 0 20px 60px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-pill">
+      <a class="nav-logo" href="alovi_landing_final.html">alovi</a>
+      <div class="nav-links">
+        <a href="alovi_products.html" class="nav-link active">Producten</a>
+        <a href="alovi_brand-laneche.html" class="nav-link">Lanèche</a>
+        <a href="alovi_brand-courtin.html" class="nav-link">Courtin</a>
+        <a href="alovi_about.html" class="nav-link">Over ons</a>
+        <a href="alovi_contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-icons">
+        <a class="nav-icon" href="alovi_products.html" aria-label="Zoeken">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </a>
+        <a class="nav-icon cart-count" href="alovi_cart.html" aria-label="Winkelwagen">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <h1 class="page-title">Alle Producten</h1>
+    <p class="page-subtitle">Ontdek ons volledige assortiment professionele huidverzorging. Zorgvuldig geselecteerd door specialisten met meer dan 30 jaar ervaring.</p>
+  </header>
+
+  <div class="shop-container">
+    <aside class="filters">
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Zoek producten..." id="searchInput">
+      </div>
+
+      <div class="filter-section">
+        <p class="filter-title">Merk</p>
+        <div class="filter-option" data-filter="brand" data-value="laneche">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">Lanèche</span>
+        </div>
+        <div class="filter-option" data-filter="brand" data-value="courtin">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">Courtin</span>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <p class="filter-title">Categorie</p>
+        <div class="filter-option" data-filter="category" data-value="verzorging">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">Verzorging</span>
+        </div>
+        <div class="filter-option" data-filter="category" data-value="reiniging">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">Reiniging</span>
+        </div>
+        <div class="filter-option" data-filter="category" data-value="serum">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">Serums</span>
+        </div>
+        <div class="filter-option" data-filter="category" data-value="oliën">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">Oliën</span>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <p class="filter-title">Prijs</p>
+        <div class="filter-option" data-filter="price" data-value="0-25">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">€0 - €25</span>
+        </div>
+        <div class="filter-option" data-filter="price" data-value="25-50">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">€25 - €50</span>
+        </div>
+        <div class="filter-option" data-filter="price" data-value="50+">
+          <div class="filter-checkbox" onclick="toggleFilter(this)">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="filter-label">€50+</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="products-main">
+      <div class="products-header">
+        <span class="results-count" id="resultsCount">12 producten</span>
+        <select class="sort-select" id="sortSelect">
+          <option value="featured">Aanbevolen</option>
+          <option value="price-low">Prijs: Laag naar hoog</option>
+          <option value="price-high">Prijs: Hoog naar laag</option>
+          <option value="name">Naam: A tot Z</option>
+        </select>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <div class="product-card" data-brand="laneche" data-category="serum" data-price="34.50">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <span class="product-tag">Bestseller</span>
+              <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&q=80" alt="Level 00 Pro Care">
+            </div>
+            <p class="product-brand">Lanèche</p>
+            <h3 class="product-name">Level 00 Pro Care</h3>
+            <p class="product-price">€34,50</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Level 00 Pro Care', 34.50)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="laneche" data-category="verzorging" data-price="42.00">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=500&q=80" alt="Moisturizer Rich">
+            </div>
+            <p class="product-brand">Lanèche</p>
+            <h3 class="product-name">Moisturizer Rich</h3>
+            <p class="product-price">€42,00</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Moisturizer Rich', 42.00)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="laneche" data-category="reiniging" data-price="28.50">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80" alt="Gentle Cleanser">
+            </div>
+            <p class="product-brand">Lanèche</p>
+            <h3 class="product-name">Gentle Cleanser</h3>
+            <p class="product-price">€28,50</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Gentle Cleanser', 28.50)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="courtin" data-category="verzorging" data-price="22.50">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <span class="product-tag" style="background: #c9a876;">Nog 8 beschikbaar</span>
+              <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&q=80" alt="24h Crème">
+            </div>
+            <p class="product-brand">Courtin</p>
+            <h3 class="product-name">24h Crème</h3>
+            <p class="product-price">€22,50</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('24h Crème', 22.50)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="courtin" data-category="oliën" data-price="29.50">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <span class="product-tag">Favoriet</span>
+              <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&q=80" alt="Tea Tree Oil">
+            </div>
+            <p class="product-brand">Courtin</p>
+            <h3 class="product-name">100% Pure Tea Tree Oil</h3>
+            <p class="product-price">€29,50</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('100% Pure Tea Tree Oil', 29.50)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="courtin" data-category="reiniging" data-price="24.00">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=500&q=80" alt="Purifying Gel">
+            </div>
+            <p class="product-brand">Courtin</p>
+            <h3 class="product-name">Purifying Gel</h3>
+            <p class="product-price">€24,00</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Purifying Gel', 24.00)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="laneche" data-category="serum" data-price="48.00">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80" alt="Vitamin C Serum">
+            </div>
+            <p class="product-brand">Lanèche</p>
+            <h3 class="product-name">Vitamin C Serum</h3>
+            <p class="product-price">€48,00</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Vitamin C Serum', 48.00)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="laneche" data-category="verzorging" data-price="38.00">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=500&q=80" alt="Night Cream">
+            </div>
+            <p class="product-brand">Lanèche</p>
+            <h3 class="product-name">Night Cream Luxe</h3>
+            <p class="product-price">€38,00</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Night Cream Luxe', 38.00)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="courtin" data-category="oliën" data-price="26.00">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?w=500&q=80" alt="Lavender Oil">
+            </div>
+            <p class="product-brand">Courtin</p>
+            <h3 class="product-name">Lavender Essence</h3>
+            <p class="product-price">€26,00</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Lavender Essence', 26.00)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="laneche" data-category="reiniging" data-price="32.00">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&q=80" alt="Foaming Cleanser">
+            </div>
+            <p class="product-brand">Lanèche</p>
+            <h3 class="product-name">Foaming Cleanser</h3>
+            <p class="product-price">€32,00</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Foaming Cleanser', 32.00)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="courtin" data-category="verzorging" data-price="19.50">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&q=80" alt="Day Cream">
+            </div>
+            <p class="product-brand">Courtin</p>
+            <h3 class="product-name">Day Cream Light</h3>
+            <p class="product-price">€19,50</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Day Cream Light', 19.50)">Toevoegen aan winkelmand</button>
+        </div>
+
+        <div class="product-card" data-brand="laneche" data-category="serum" data-price="52.00">
+          <a href="alovi_product.html" style="text-decoration: none; color: inherit;">
+            <div class="product-image">
+              <span class="product-tag" style="background: #c9a876;">Nieuw</span>
+              <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=500&q=80" alt="Hyaluron Serum">
+            </div>
+            <p class="product-brand">Lanèche</p>
+            <h3 class="product-name">Hyaluron Complex</h3>
+            <p class="product-price">€52,00</p>
+          </a>
+          <button class="btn-add-cart" onclick="addToCart('Hyaluron Complex', 52.00)">Toevoegen aan winkelmand</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Cart state management
+    let cart = JSON.parse(localStorage.getItem('aloviCart')) || [];
+
+    function updateCartBadge() {
+      const badge = document.getElementById('cartBadge');
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      badge.textContent = totalItems;
+      badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+
+    function addToCart(name, price) {
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      localStorage.setItem('aloviCart', JSON.stringify(cart));
+      updateCartBadge();
+
+      // Show feedback
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = 'Toegevoegd!';
+      btn.style.background = '#8a9478';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+      }, 1500);
+    }
+
+    // Initialize cart badge on page load
+    updateCartBadge();
+
+    // Filter functionality
+    const activeFilters = {
+      brand: [],
+      category: [],
+      price: []
+    };
+
+    function toggleFilter(checkbox) {
+      checkbox.classList.toggle('checked');
+      const option = checkbox.parentElement;
+      const filterType = option.dataset.filter;
+      const value = option.dataset.value;
+
+      if (checkbox.classList.contains('checked')) {
+        activeFilters[filterType].push(value);
+      } else {
+        const index = activeFilters[filterType].indexOf(value);
+        if (index > -1) activeFilters[filterType].splice(index, 1);
+      }
+
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const products = document.querySelectorAll('.product-card');
+      let visibleCount = 0;
+
+      products.forEach(product => {
+        let visible = true;
+
+        if (activeFilters.brand.length > 0) {
+          if (!activeFilters.brand.includes(product.dataset.brand)) visible = false;
+        }
+
+        if (activeFilters.category.length > 0) {
+          if (!activeFilters.category.includes(product.dataset.category)) visible = false;
+        }
+
+        if (activeFilters.price.length > 0) {
+          const price = parseFloat(product.dataset.price);
+          const priceMatch = activeFilters.price.some(range => {
+            if (range === '0-25') return price <= 25;
+            if (range === '25-50') return price > 25 && price <= 50;
+            if (range === '50+') return price > 50;
+            return false;
+          });
+          if (!priceMatch) visible = false;
+        }
+
+        product.style.display = visible ? 'block' : 'none';
+        if (visible) visibleCount++;
+      });
+
+      document.getElementById('resultsCount').textContent = `${visibleCount} producten`;
+    }
+
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const products = document.querySelectorAll('.product-card');
+      let visibleCount = 0;
+
+      products.forEach(product => {
+        const name = product.querySelector('.product-name').textContent.toLowerCase();
+        const brand = product.querySelector('.product-brand').textContent.toLowerCase();
+        const visible = name.includes(searchTerm) || brand.includes(searchTerm);
+
+        product.style.display = visible ? 'block' : 'none';
+        if (visible) visibleCount++;
+      });
+
+      document.getElementById('resultsCount').textContent = `${visibleCount} producten`;
+    });
+
+    // Sort functionality
+    document.getElementById('sortSelect').addEventListener('change', function(e) {
+      const grid = document.getElementById('productsGrid');
+      const products = Array.from(grid.children);
+
+      products.sort((a, b) => {
+        switch (e.target.value) {
+          case 'price-low':
+            return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+          case 'price-high':
+            return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+          case 'name':
+            return a.querySelector('.product-name').textContent.localeCompare(b.querySelector('.product-name').textContent);
+          default:
+            return 0;
+        }
+      });
+
+      products.forEach(product => grid.appendChild(product));
+    });
+
+    // Navbar hide on scroll
+    const nav = document.querySelector('.nav');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('nav-hidden');
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+      lastScroll = currentScroll;
+    }, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bedankt voor je bestelling bij Alovi.">
+  <title>Bedankt | Alovi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f4f2ed;
+      --sage-warm: #8a9478;
+      --black: #1a1a18;
+      --text-muted: #6a6a64;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.75;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .success-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 32px;
+    }
+
+    .success-card {
+      background: white;
+      padding: 60px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 600px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .success-icon {
+      font-size: 80px;
+      margin-bottom: 24px;
+    }
+
+    .success-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .success-text {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .order-number {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      padding: 16px;
+      background: var(--cream);
+      border-radius: 8px;
+    }
+
+    .order-number strong {
+      color: var(--black);
+      font-weight: 500;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary {
+      background: var(--sage-warm);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(138, 148, 120, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--black);
+      border: 1px solid var(--cream);
+    }
+
+    .btn-secondary:hover {
+      background: var(--cream);
+    }
+
+    .next-steps {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--cream);
+    }
+
+    .next-steps-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .next-steps-list {
+      list-style: none;
+      text-align: left;
+    }
+
+    .next-steps-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--cream);
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: start;
+      gap: 12px;
+    }
+
+    .next-steps-list li::before {
+      content: "✓";
+      color: var(--sage-warm);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .success-card {
+        padding: 40px 24px;
+      }
+
+      .success-title {
+        font-size: 28px;
+      }
+
+      .cta-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <div class="success-card">
+      <div class="success-icon">✨</div>
+      <h1 class="success-title">Bedankt voor je bestelling!</h1>
+      <p class="success-text">We hebben je bestelling goed ontvangen. Je ontvangt binnen enkele minuten een bevestiging per e-mail.</p>
+
+      <div class="order-number">
+        Ordernummer: <strong id="orderNumber">ALO-XXXXXX</strong>
+      </div>
+
+      <div class="cta-group">
+        <a href="alovi_products.html" class="btn btn-primary">Verder winkelen</a>
+        <a href="alovi_contact.html" class="btn btn-secondary">Neem contact op</a>
+      </div>
+
+      <div class="next-steps">
+        <h3 class="next-steps-title">Wat gebeurt er nu?</h3>
+        <ul class="next-steps-list">
+          <li>Bevestiging verstuurd naar je e-mailadres</li>
+          <li>Bestelling verwerkt binnen 1-2 werkdagen</li>
+          <li>Verzending via PostNL (gratis vanaf €60)</li>
+          <li>Verwachte levering: 2-3 werkdagen</li>
+          <li>30 dagen retourrecht</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get order info from session storage
+    const orderInfo = JSON.parse(sessionStorage.getItem('lastOrder'));
+
+    if (orderInfo && orderInfo.orderNumber) {
+      document.getElementById('orderNumber').textContent = orderInfo.orderNumber;
+    }
+
+    // Clear session storage after displaying
+    // sessionStorage.removeItem('lastOrder');
+  </script>
+</body>
+</html>

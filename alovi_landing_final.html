@@ -1596,19 +1596,13 @@
         <a href="#over-ons" class="nav-link">Over ons</a>
       </div>
       <div class="nav-icons">
-        <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Zoeken">
-          <circle cx="11" cy="11" r="7"/>
-          <line x1="16.5" y1="16.5" x2="22" y2="22"/>
-        </svg>
-        <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Account">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-        <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Winkelwagen">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <path d="M16 10a4 4 0 0 1-8 0"/>
-        </svg>
+        <a href="alovi_products.html" class="nav-icon" aria-label="Zoeken">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </a>
+        <a href="alovi_cart.html" class="nav-icon cart-count" aria-label="Winkelwagen" style="position: relative;">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" style="position: absolute; top: -8px; right: -8px; background: var(--sage-warm); color: white; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
+        </a>
       </div>
     </div>
   </nav>
