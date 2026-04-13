@@ -1,0 +1,210 @@
+<!-- Unified Navbar for Alovi Website -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #f4f2ed;
+    --cream-light: #f9f7f3;
+    --black: #1a1a18;
+    --black-soft: #2a2a28;
+    --text-muted: #6a6a64;
+    --sage: #8a9a88;
+    --sage-warm: #8a9478;
+    --sage-muted: #9aaa94;
+    --white: #ffffff;
+
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, sans-serif;
+    --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    z-index: 100;
+    width: calc(100% - 40px);
+    max-width: 1000px;
+    transition: transform var(--transition-base);
+  }
+
+  .nav.nav-hidden {
+    transform: translateX(-50%) translateY(-150%);
+  }
+
+  .nav-pill {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 100px;
+    padding: 17px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 24px rgba(26, 26, 24, 0.04), 0 1px 3px rgba(26, 26, 24, 0.02);
+    transition: all var(--transition-base);
+  }
+
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--black);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--black-soft);
+    letter-spacing: 0.02em;
+    transition: color 250ms ease-out;
+    position: relative;
+    padding: 4px 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--sage-warm);
+    transition: width var(--transition-base);
+  }
+
+  .nav-link:hover {
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .nav-icon {
+    width: 22px;
+    height: 22px;
+    stroke: var(--black);
+    fill: none;
+    stroke-width: 1.4;
+    cursor: pointer;
+    opacity: 0.65;
+    transition: opacity 250ms ease-out, transform var(--transition-base), stroke var(--transition-base);
+    border-radius: 4px;
+    padding: 2px;
+  }
+
+  .nav-icon:hover {
+    opacity: 1;
+    transform: scale(1.08);
+    stroke: var(--sage-warm);
+  }
+
+  .cart-count {
+    position: relative;
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--sage-warm);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 500;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      top: 16px;
+      width: calc(100% - 32px);
+    }
+
+    .nav-pill {
+      padding: 12px 20px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+  }
+</style>
+
+<nav class="nav">
+  <div class="nav-pill">
+    <a class="nav-logo" href="index.html">alovi</a>
+    <div class="nav-links">
+      <a href="alovi_products.html" class="nav-link">Producten</a>
+      <a href="alovi_brand-laneche.html" class="nav-link">Lanèche</a>
+      <a href="alovi_brand-courtin.html" class="nav-link">Courtin</a>
+      <a href="alovi_about.html" class="nav-link">Over ons</a>
+      <a href="alovi_contact.html" class="nav-link">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <a class="nav-icon" href="alovi_products.html" aria-label="Zoeken">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+      </a>
+      <a class="nav-icon cart-count" href="alovi_cart.html" aria-label="Winkelwagen">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Cart functionality
+  let cart = JSON.parse(localStorage.getItem('aloviCart')) || [];
+
+  function updateCartBadge() {
+    const badge = document.getElementById('cartBadge');
+    if (badge) {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      badge.textContent = totalItems;
+      badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+  }
+
+  // Update on page load
+  updateCartBadge();
+
+  // Navbar hide on scroll
+  const nav = document.querySelector('.nav');
+  if (nav) {
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('nav-hidden');
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+      lastScroll = currentScroll;
+    }, { passive: true });
+  }
+</script>
