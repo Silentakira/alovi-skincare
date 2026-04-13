@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alovi | Natuurlijke Huidverzorging</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
+    :root {
+      /* Colors */
+      --cream: #f2f0eb;
+      --cream-light: #f7f5f1;
+      --cream-dark: #e8e6e1;
+      --warm-white: #faf8f4;
+      --black: #1a1a18;
+      --black-muted: #3a3a36;
+      --text-muted: #6a6a64;
+      --text-light: #8a8a84;
+      --sage: #8a9a84;
+      --sage-muted: #a8b4a4;
+      --sage-pale: #d4dacd;
+      --sage-ghost: rgba(138, 154, 132, 0.08);
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+      --space-4xl: 8rem;
+      --space-5xl: 10rem;
+
+      /* Typography */
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+
+      /* Transitions */
+      --transition-fast: 200ms ease-out;
+      --transition-base: 300ms ease-out;
+      --transition-slow: 500ms ease-out;
+    }
+
+    /* ============================================
+       BASE & RESET
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiated;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: opacity var(--transition-fast);
+    }
+
+    a:hover {
+      opacity: 0.7;
+    }
+
+    /* ============================================
+       FROSTED GLASS NAVBAR
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      width: calc(100% - var(--space-2xl));
+      max-width: 600px;
+    }
+
+    .nav-pill {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 100px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 24px rgba(26, 26, 24, 0.06);
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--black);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      stroke: var(--black);
+      fill: none;
+      stroke-width: 1.5;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity var(--transition-fast);
+    }
+
+    .nav-icon:hover {
+      opacity: 1;
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: linear-gradient(180deg, #d4d0c8 0%, #e0d8cc 50%, #c8c4bc 100%);
+    }
+
+    .hero-wordmark {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: clamp(80px, 15vw, 200px);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      z-index: 10;
+      padding: 0 var(--space-lg);
+      text-transform: lowercase;
+      pointer-events: none;
+    }
+
+    /* ============================================
+       ABOUT/PHILOSOPHY SECTION
+       ============================================ */
+    .philosophy {
+      padding: var(--space-4xl) var(--space-lg);
+      background: var(--cream);
+      min-height: 80vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .philosophy-content {
+      padding-right: var(--space-xl);
+    }
+
+    .philosophy-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 36px);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--black);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+    }
+
+    .philosophy-title em {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .philosophy-text {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-md);
+      max-width: 420px;
+    }
+
+    .philosophy-cta {
+      display: inline-block;
+      margin-top: var(--space-lg);
+      padding: 14px 28px;
+      background: var(--sage);
+      color: var(--warm-white);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-radius: 100px;
+      transition: background var(--transition-base), transform var(--transition-base);
+      cursor: pointer;
+      border: none;
+    }
+
+    .philosophy-cta:hover {
+      background: var(--sage-muted);
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    .philosophy-product {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl);
+    }
+
+    .philosophy-product-image {
+      width: 280px;
+      height: 320px;
+      background: linear-gradient(180deg, #f8f6f1 0%, #f0eee9 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      box-shadow: 0 20px 60px rgba(26, 26, 24, 0.1);
+    }
+
+    /* ============================================
+       PRODUCT SHOWCASE SECTION
+       ============================================ */
+    .showcase {
+      padding: var(--space-4xl) 0;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 100vh;
+    }
+
+    .showcase-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 1px;
+      background: var(--cream-dark);
+    }
+
+    .showcase-image {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      transition: opacity var(--transition-base);
+    }
+
+    .showcase-image:hover {
+      opacity: 0.9;
+    }
+
+    .showcase-image:nth-child(1) {
+      background: linear-gradient(180deg, #e8e4dc 0%, #ddd8ce 100%);
+      grid-row: span 2;
+    }
+
+    .showcase-image:nth-child(2) {
+      background: linear-gradient(180deg, #dce8dc 0%, #cfe0d0 100%);
+    }
+
+    .showcase-image:nth-child(3) {
+      background: linear-gradient(180deg, #e0dcc8 0%, #d4d0bc 100%);
+    }
+
+    .showcase-content {
+      padding: var(--space-3xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .showcase-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.02em;
+    }
+
+    .showcase-text {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 400px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .showcase-inset {
+      width: 200px;
+      height: 140px;
+      background: linear-gradient(180deg, #f0eee9 0%, #e8e6e1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+    }
+
+    /* ============================================
+       NEW COLLECTION SECTION
+       ============================================ */
+    .collection {
+      padding: var(--space-4xl) var(--space-lg);
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .collection-ghost {
+      position: absolute;
+      top: 15%;
+      right: 10%;
+      font-family: var(--font-serif);
+      font-size: clamp(150px, 25vw, 350px);
+      font-weight: 500;
+      color: var(--sage-ghost);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .collection-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .collection-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .collection-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+
+    .collection-text {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 380px;
+    }
+
+    .collection-product {
+      background: linear-gradient(180deg, #f5f3ed 0%, #ebe9e3 100%);
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+    }
+
+    .collection-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .collection-product-row {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .collection-product-small {
+      width: calc(25% - var(--space-md) * 3 / 4);
+      aspect-ratio: 3/4;
+      background: linear-gradient(180deg, #f0eee9 0%, #e6e4df 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--text-light);
+      transition: transform var(--transition-base);
+      cursor: pointer;
+    }
+
+    .collection-product-small:hover {
+      transform: translateY(-4px);
+    }
+
+    .collection-info {
+      padding-left: var(--space-xl);
+    }
+
+    .collection-info p {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-lg);
+    }
+
+    .collection-cta {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--sage);
+      color: var(--warm-white);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-radius: 100px;
+      transition: background var(--transition-base), transform var(--transition-base);
+      cursor: pointer;
+      border: none;
+    }
+
+    .collection-cta:hover {
+      background: var(--sage-muted);
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--cream-dark);
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .footer-bottom {
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
+    @media (max-width: 1024px) {
+      .philosophy,
+      .showcase {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      .philosophy-product {
+        order: -1;
+      }
+
+      .showcase-images {
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px 200px 200px;
+      }
+
+      .showcase-image:nth-child(1) {
+        grid-row: span 1;
+      }
+
+      .collection-top,
+      .collection-bottom {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      .collection-ghost {
+        top: 10%;
+        right: 5%;
+      }
+
+      .collection-product-small {
+        width: calc(50% - var(--space-md) / 2);
+      }
+
+      .collection-info {
+        padding-left: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        top: var(--space-md);
+        width: calc(100% - var(--space-lg));
+      }
+
+      .nav-pill {
+        padding: 10px 20px;
+      }
+
+      .hero-wordmark {
+        font-size: clamp(60px, 20vw, 120px);
+      }
+
+      .philosophy,
+      .showcase,
+      .collection {
+        padding: var(--space-2xl) var(--space-md);
+      }
+
+      .collection-product-row {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-links {
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Frosted Glass Navbar -->
+  <nav class="nav">
+    <div class="nav-pill">
+      <span class="nav-logo">alovi</span>
+      <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Winkelwagen">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-image">
+      <!-- Full-bleed close-up skin/face photograph -->
+      <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; letter-spacing: 0.1em; color: var(--text-light);">[ full-bleed close-up skin/face photograph ]</span>
+    </div>
+    <h1 class="hero-wordmark">alovi</h1>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="philosophy">
+    <div class="philosophy-content">
+      <h2 class="philosophy-title">
+        Dertig jaar passie<br>
+        voor <em>de huid</em><br>
+        en alles wat er toe doet
+      </h2>
+      <p class="philosophy-text">
+        Mijn verhaal in de wereld van uiterlijke verzorging is begonnen in 1994. Wat destijds startte als een passie voor het verzorgen is een passie voor de huid geworden.
+      </p>
+      <p class="philosophy-text">
+        Ik wil dat jij elke dag kunt genieten van dat heerlijke, verzorgde gevoel. Daarom heb ik met veel zorg een webshop samengesteld met producten die ik zelf ook in de salon gebruik.
+      </p>
+      <button class="philosophy-cta">Over ons verhaal</button>
+    </div>
+    <div class="philosophy-product">
+      <div class="philosophy-product-image">
+        <span>[ amber glass jar with black lid ]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Showcase Section -->
+  <section class="showcase">
+    <div class="showcase-images">
+      <div class="showcase-image">
+        <span>[ tall portrait product photo ]</span>
+      </div>
+      <div class="showcase-image">
+        <span>[ product photo on stone ]</span>
+      </div>
+      <div class="showcase-image">
+        <span>[ landscape product shot ]</span>
+      </div>
+    </div>
+    <div class="showcase-content">
+      <h2 class="showcase-title">
+        Twee merken,<br>
+        één missie
+      </h2>
+      <p class="showcase-text">
+        Professionele huidverzorging die je thuis kunt voortzetten. Zorgvuldig geselecteerd door een specialist met meer dan 30 jaar ervaring.
+      </p>
+      <div class="showcase-inset">
+        <span>[ small product flat-lay ]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Collection Section -->
+  <section class="collection">
+    <span class="collection-ghost">nieuw</span>
+    <div class="collection-inner">
+      <div class="collection-top">
+        <h2 class="collection-title">
+          Nieuwe collectie
+        </h2>
+        <div class="collection-product">
+          <span>[ 3 pump bottles, cream tones ]</span>
+        </div>
+      </div>
+      <div class="collection-bottom">
+        <div class="collection-product-row">
+          <div class="collection-product-small"><span>1</span></div>
+          <div class="collection-product-small"><span>2</span></div>
+          <div class="collection-product-small"><span>3</span></div>
+          <div class="collection-product-small"><span>4</span></div>
+        </div>
+        <div class="collection-info">
+          <p>
+            Ontdek onze nieuwste aanwinsten. Elk product is zorgvuldig gekozen voor zijn werkzaamheid en natuurlijkheid.
+          </p>
+          <button class="collection-cta">Bekijk collectie</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-logo">alovi</span>
+    <p class="footer-tagline">Natuurlijke huidverzorging sinds 1994</p>
+    <div class="footer-links">
+      <a href="#">Lanèche</a>
+      <a href="#">Courtin</a>
+      <a href="#">Contact</a>
+      <a href="#">info@alovi.nl</a>
+    </div>
+    <div class="footer-bottom">
+      © 2026, alovi — Gemaakt met liefde
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+
+    // Subtle parallax effect on hero wordmark
+    const heroWordmark = document.querySelector('.hero-wordmark');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      const heroHeight = hero.offsetHeight;
+
+      if (scrolled < heroHeight) {
+        const yPos = scrolled * 0.3;
+        heroWordmark.style.transform = `translateY(${yPos}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

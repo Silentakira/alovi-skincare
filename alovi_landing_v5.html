@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alovi | Natuurlijke Huidverzorging</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
+    :root {
+      /* Colors - Refined Warm Palette */
+      --cream: #f4f2ed;
+      --cream-light: #f9f7f3;
+      --cream-warm: #f0ede7;
+      --cream-dark: #e8e6e1;
+      --warm-white: #fbf9f6;
+      --black: #1a1a18;
+      --black-soft: #2a2a28;
+      --text-muted: #6a6a64;
+      --text-light: #9a9a94;
+      --sage: #8a9a88;
+      --sage-warm: #8a9478;
+      --sage-muted: #9aaa94;
+      --sage-pale: #d4dacd;
+      --sage-ghost: rgba(138, 154, 136, 0.06);
+
+      /* Spacing Scale */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+      --space-3xl: 8rem;
+      --space-4xl: 10rem;
+      --space-5xl: 12rem;
+
+      /* Typography */
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+
+      /* Transitions */
+      --transition-fast: 250ms ease-out;
+      --transition-base: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================
+       BASE & RESET
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.75;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: opacity var(--transition-fast);
+    }
+
+    a:hover {
+      opacity: 0.65;
+    }
+
+    /* ============================================
+       FROSTED GLASS NAVBAR
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: var(--space-lg);
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      z-index: 100;
+      width: calc(100% - var(--space-xl));
+      max-width: 560px;
+      transition: transform var(--transition-base);
+    }
+
+    .nav.nav-hidden {
+      transform: translateX(-50%) translateY(-150%);
+    }
+
+    .nav-pill {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 100px;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow:
+        0 4px 24px rgba(26, 26, 24, 0.04),
+        0 1px 3px rgba(26, 26, 24, 0.02);
+      transition: all var(--transition-base);
+    }
+
+    .nav-pill:hover {
+      box-shadow:
+        0 8px 32px rgba(26, 26, 24, 0.06),
+        0 2px 6px rgba(26, 26, 24, 0.03);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--black-soft);
+      letter-spacing: 0.02em;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--black);
+      opacity: 1;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--black);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-icon {
+      width: 22px;
+      height: 22px;
+      stroke: var(--black);
+      fill: none;
+      stroke-width: 1.4;
+      cursor: pointer;
+      opacity: 0.65;
+      transition: opacity var(--transition-fast), transform var(--transition-base);
+    }
+
+    .nav-icon:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 750px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(26, 26, 24, 0.08) 0%,
+        rgba(26, 26, 24, 0) 30%,
+        rgba(26, 26, 24, 0) 60%,
+        rgba(26, 26, 24, 0.12) 100%
+      );
+    }
+
+    .hero-wordmark {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: clamp(72px, 14vw, 180px);
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      z-index: 10;
+      padding: 0 var(--space-lg);
+      text-transform: lowercase;
+      pointer-events: none;
+      text-shadow:
+        0 2px 8px rgba(26, 26, 24, 0.1),
+        0 8px 32px rgba(26, 26, 24, 0.08);
+    }
+
+    .hero-eyebrow {
+      position: absolute;
+      bottom: clamp(80px, 12vw, 140px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      font-weight: 400;
+      z-index: 11;
+      opacity: 0.9;
+    }
+
+    /* ============================================
+       INTRO SECTION
+       ============================================ */
+    .intro {
+      padding: var(--space-2xl) var(--space-lg);
+      background: var(--cream);
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .intro-title {
+      font-family: var(--font-serif);
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--black);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+    }
+
+    .intro-title em {
+      font-style: italic;
+      color: var(--sage-warm);
+    }
+
+    .intro-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-lg);
+    }
+
+    .intro-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+    }
+
+    .intro-stat {
+      text-align: center;
+    }
+
+    .intro-stat-value {
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .intro-stat-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    /* ============================================
+       PHILOSOPHY SECTION
+       ============================================ */
+    .philosophy {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--warm-white);
+      min-height: 80vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .philosophy-content {
+      padding-right: var(--space-lg);
+    }
+
+    .philosophy-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage-warm);
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+    }
+
+    .philosophy-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--black);
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.02em;
+    }
+
+    .philosophy-title em {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .philosophy-text {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-sm);
+      max-width: 420px;
+    }
+
+    .philosophy-cta {
+      display: inline-block;
+      margin-top: var(--space-lg);
+      padding: 14px 28px;
+      background: var(--sage-warm);
+      color: var(--warm-white);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-radius: 100px;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 16px rgba(138, 148, 120, 0.2);
+    }
+
+    .philosophy-cta:hover {
+      background: var(--sage-muted);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(138, 148, 120, 0.25);
+      opacity: 1;
+    }
+
+    .philosophy-visual {
+      position: relative;
+      height: 500px;
+    }
+
+    .philosophy-image-main {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 75%;
+      height: 85%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 20px 60px rgba(26, 26, 24, 0.1),
+        0 8px 24px rgba(26, 26, 24, 0.06);
+    }
+
+    .philosophy-image-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .philosophy-image-accent {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 45%;
+      height: 40%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 16px 48px rgba(26, 26, 24, 0.12),
+        0 6px 20px rgba(26, 26, 24, 0.08);
+      z-index: 2;
+    }
+
+    .philosophy-image-accent img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ============================================
+       BRANDS SECTION
+       ============================================ */
+    .brands {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brands-ghost {
+      position: absolute;
+      top: 20%;
+      left: -5%;
+      font-family: var(--font-serif);
+      font-size: clamp(200px, 30vw, 450px);
+      font-weight: 500;
+      color: var(--sage-ghost);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: lowercase;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .brands-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--cream-dark);
+    }
+
+    .brand-card {
+      background: var(--cream);
+      padding: var(--space-3xl) var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 500px;
+      transition: background var(--transition-base);
+    }
+
+    .brand-card:hover {
+      background: var(--cream-light);
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-tagline {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-lg);
+      text-transform: uppercase;
+    }
+
+    .brand-description {
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 380px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .brand-cta {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage-warm);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap var(--transition-base);
+    }
+
+    .brand-cta::after {
+      content: '→';
+      font-size: 14px;
+    }
+
+    .brand-cta:hover {
+      gap: 12px;
+      opacity: 1;
+    }
+
+    .brand-card:first-child {
+      background: linear-gradient(180deg, var(--cream-warm) 0%, var(--cream) 100%);
+    }
+
+    .brand-card:last-child {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%);
+    }
+
+    /* ============================================
+       SHOWCASE SECTION
+       ============================================ */
+    .showcase {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 70vh;
+    }
+
+    .showcase-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .showcase-image {
+      height: 200px;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .showcase-image:first-child {
+      grid-row: span 2;
+      height: 416px;
+    }
+
+    .showcase-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .showcase-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .showcase-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .showcase-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage-warm);
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+    }
+
+    .showcase-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.03em;
+    }
+
+    .showcase-text {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 380px;
+    }
+
+    /* ============================================
+       PRODUCTS SECTION
+       ============================================ */
+    .products {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .products-ghost {
+      position: absolute;
+      top: 15%;
+      right: 8%;
+      font-family: var(--font-serif);
+      font-size: clamp(180px, 28vw, 400px);
+      font-weight: 500;
+      color: var(--sage-ghost);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .products-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .products-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .products-title {
+      font-family: var(--font-serif);
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--black);
+      letter-spacing: -0.03em;
+    }
+
+    .products-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 420px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .product-card {
+      cursor: pointer;
+      transition: transform var(--transition-base);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-image {
+      aspect-ratio: 4/5;
+      margin-bottom: var(--space-md);
+      position: relative;
+      overflow: hidden;
+      background: var(--cream-light);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--black);
+      color: var(--cream);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      padding: 6px 12px;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .product-brand {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sage-warm);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .product-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: var(--space-xs);
+      line-height: 1.3;
+      transition: color var(--transition-fast);
+    }
+
+    .product-card:hover .product-name {
+      color: var(--sage-warm);
+    }
+
+    .product-price {
+      font-size: 15px;
+      color: var(--sage-warm);
+      font-weight: 400;
+    }
+
+    /* ============================================
+       COLLECTION SECTION
+       ============================================ */
+    .collection {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--warm-white);
+      position: relative;
+      overflow: hidden;
+      min-height: 80vh;
+    }
+
+    .collection-ghost {
+      position: absolute;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-serif);
+      font-size: clamp(160px, 25vw, 380px);
+      font-weight: 500;
+      color: var(--sage-ghost);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: lowercase;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .collection-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .collection-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .collection-title {
+      font-family: var(--font-serif);
+      font-size: clamp(42px, 6vw, 68px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--black);
+      letter-spacing: -0.03em;
+    }
+
+    .collection-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 400px;
+    }
+
+    .collection-product {
+      height: 420px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(26, 26, 24, 0.06);
+      position: relative;
+    }
+
+    .collection-product img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .collection-bottom {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    .collection-product-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    .collection-product-small {
+      aspect-ratio: 3/4;
+      transition: transform var(--transition-base);
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--cream-light);
+    }
+
+    .collection-product-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .collection-product-small:hover img {
+      transform: scale(1.08);
+    }
+
+    .collection-product-small:hover {
+      transform: translateY(-6px);
+    }
+
+    .collection-info {
+      padding-left: var(--space-xl);
+    }
+
+    .collection-info p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-lg);
+    }
+
+    .collection-cta {
+      display: inline-block;
+      padding: 16px 32px;
+      background: var(--sage-warm);
+      color: var(--warm-white);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      border-radius: 100px;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 16px rgba(138, 148, 120, 0.2);
+    }
+
+    .collection-cta:hover {
+      background: var(--sage-muted);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(138, 148, 120, 0.25);
+      opacity: 1;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      padding: var(--space-3xl) var(--space-lg);
+      background: var(--cream-dark);
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: var(--space-lg);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-bottom {
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+      font-size: 11px;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    /* ============================================
+       ANIMATIONS
+       ============================================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
+    @media (max-width: 1024px) {
+      .philosophy,
+      .showcase,
+      .collection-top,
+      .collection-bottom,
+      .products-header {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      .philosophy-visual {
+        order: -1;
+        height: 400px;
+      }
+
+      .philosophy-content {
+        padding-right: 0;
+      }
+
+      .showcase {
+        padding: var(--space-2xl) var(--space-lg);
+      }
+
+      .showcase-images {
+        grid-template-columns: 1fr;
+        grid-template-rows: 250px 180px 180px;
+        gap: var(--space-sm);
+      }
+
+      .showcase-image:first-child {
+        grid-row: span 1;
+        height: 250px;
+      }
+
+      .showcase-image {
+        height: 180px;
+      }
+
+      .brands-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .collection-product-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .collection-info {
+        padding-left: 0;
+      }
+
+      .brands-ghost,
+      .products-ghost,
+      .collection-ghost {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        top: var(--space-md);
+        width: calc(100% - var(--space-lg));
+        max-width: none;
+      }
+
+      .nav-pill {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-wordmark {
+        font-size: clamp(56px, 18vw, 100px);
+      }
+
+      .hero-eyebrow {
+        bottom: clamp(60px, 10vw, 100px);
+      }
+
+      .intro,
+      .philosophy,
+      .showcase,
+      .brands,
+      .products,
+      .collection {
+        padding: var(--space-xl) var(--space-md);
+      }
+
+      .intro-stats {
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collection-product-row {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-links {
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+
+      .intro-stat-value {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Frosted Glass Navbar -->
+  <nav class="nav">
+    <div class="nav-pill">
+      <span class="nav-logo">alovi</span>
+      <div class="nav-links">
+        <a href="#" class="nav-link">Lanèche</a>
+        <a href="#" class="nav-link">Courtin</a>
+        <a href="#" class="nav-link">Over ons</a>
+      </div>
+      <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Winkelwagen">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1920&q=80" alt="Natural skincare" loading="lazy">
+    </div>
+    <div class="hero-overlay"></div>
+    <h1 class="hero-wordmark">alovi</h1>
+    <p class="hero-eyebrow">Natuurlijke huidverzorging sinds 1994</p>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="intro fade-up">
+    <h2 class="intro-title">
+      Professionele huidverzorging<BR>
+      die je <em>thuis</em> kunt voortzetten
+    </h2>
+    <p class="intro-text">
+      Zorgvuldig geselecteerd door een specialist met meer dan 30 jaar ervaring. Twee merken, één missie: jouw huid verdient het beste.
+    </p>
+    <div class="intro-stats">
+      <div class="intro-stat">
+        <span class="intro-stat-value">30+</span>
+        <span class="intro-stat-label">Jaar ervaring</span>
+      </div>
+      <div class="intro-stat">
+        <span class="intro-stat-value">2</span>
+        <span class="intro-stat-label">Premium merken</span>
+      </div>
+      <div class="intro-stat">
+        <span class="intro-stat-value">100%</span>
+        <span class="intro-stat-label">Specialist</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="philosophy">
+    <div class="philosophy-content fade-up">
+      <p class="philosophy-eyebrow">Over ons</p>
+      <h2 class="philosophy-title">
+        Dertig jaar passie<BR>
+        voor <em>de huid</em><BR>
+        en alles wat er toe doet
+      </h2>
+      <p class="philosophy-text">
+        Mijn verhaal in de wereld van uiterlijke verzorging is begonnen in 1994. Wat destijds startte als een passie voor het verzorgen is een passie voor de huid geworden.
+      </p>
+      <p class="philosophy-text">
+        Ik wil dat jij elke dag kunt genieten van dat heerlijke, verzorgde gevoel. Daarom heb ik met veel zorg een webshop samengesteld met producten die ik zelf ook in de salon gebruik.
+      </p>
+      <button class="philosophy-cta">Lees ons verhaal</button>
+    </div>
+    <div class="philosophy-visual fade-up">
+      <div class="philosophy-image-main">
+        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80" alt="Skincare" loading="lazy">
+      </div>
+      <div class="philosophy-image-accent">
+        <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=500&q=80" alt="Product" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands Section -->
+  <section class="brands">
+    <span class="brands-ghost">merken</span>
+    <div class="brands-inner">
+      <div class="brand-card fade-up">
+        <h3 class="brand-name">Lanèche</h3>
+        <p class="brand-tagline">Professionele huidverzorging</p>
+        <p class="brand-description">
+          Een compleet assortiment voor de professionele behandeling en thuisverzorging. Wetenschappelijk ontwikkeld, effectief en huidvriendelijk.
+        </p>
+        <a href="#" class="brand-cta">Bekijk collectie</a>
+      </div>
+      <div class="brand-card fade-up">
+        <h3 class="brand-name">Courtin</h3>
+        <p class="brand-tagline">Natuurlijke Tea Tree formules</p>
+        <p class="brand-description">
+          Puur natuur met de kracht van Tea Tree olie. Ideaal voor de onzuivere en vette huid. Verfrissend, zuiverend en effectief.
+        </p>
+        <a href="#" class="brand-cta">Bekijk collectie</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase Section -->
+  <section class="showcase">
+    <div class="showcase-images">
+      <div class="showcase-image">
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80" alt="Skincare product" loading="lazy">
+      </div>
+      <div class="showcase-image">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=80" alt="Natural skincare" loading="lazy">
+      </div>
+      <div class="showcase-image">
+        <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?w=600&q=80" alt="Beauty products" loading="lazy">
+      </div>
+    </div>
+    <div class="showcase-content">
+      <p class="showcase-eyebrow">Onze werkwijze</p>
+      <h2 class="showcase-title">
+        Twee merken,<BR>
+        één missie
+      </h2>
+      <p class="showcase-text">
+        Elk product is zorgvuldig gekozen voor zijn kwaliteit, werkzaamheid en natuurlijkheid. Geen overbodige toevoegingen, alleen wat jouw huid echt nodig heeft.
+      </p>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products">
+    <span class="products-ghost">producten</span>
+    <div class="products-inner">
+      <div class="products-header">
+        <h2 class="products-title fade-up">Uitgelicht</h2>
+        <p class="products-text fade-up">
+          Onze bestverkochte producten, zorgvuldig samengesteld voor optimale resultaten. Ontdek wat jouw huid nodig heeft.
+        </p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card fade-up">
+          <div class="product-image">
+            <span class="product-tag">Bestseller</span>
+            <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=500&q=80" alt="Level 00 Pro Care" loading="lazy">
+          </div>
+          <p class="product-brand">Lanèche</p>
+          <h3 class="product-name">Level 00 Pro Care</h3>
+          <p class="product-price">€34,50</p>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500&q=80" alt="24h Crème" loading="lazy">
+          </div>
+          <p class="product-brand">Courtin</p>
+          <h3 class="product-name">24h Crème</h3>
+          <p class="product-price">€22,50</p>
+        </div>
+        <div class="product-card fade-up">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=500&q=80" alt="Tea Tree Oil" loading="lazy">
+          </div>
+          <p class="product-brand">Courtin</p>
+          <h3 class="product-name">100% Pure Tea Tree Oil</h3>
+          <p class="product-price">€29,50</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Collection Section -->
+  <section class="collection">
+    <span class="collection-ghost">nieuw</span>
+    <div class="collection-inner">
+      <div class="collection-top">
+        <h2 class="collection-title fade-up">Nieuwe collectie</h2>
+        <div class="collection-product fade-up">
+          <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80" alt="New collection" loading="lazy">
+        </div>
+      </div>
+      <div class="collection-bottom">
+        <div class="collection-product-row">
+          <div class="collection-product-small fade-up"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80" alt="Product 1" loading="lazy"></div>
+          <div class="collection-product-small fade-up"><img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?w=400&q=80" alt="Product 2" loading="lazy"></div>
+          <div class="collection-product-small fade-up"><img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&q=80" alt="Product 3" loading="lazy"></div>
+          <div class="collection-product-small fade-up"><img src="https://images.unsplash.com/photo-1617897903246-719242758050?w=400&q=80" alt="Product 4" loading="lazy"></div>
+        </div>
+        <div class="collection-info fade-up">
+          <p>
+            Ontdek onze nieuwste aanwinsten. Elk product is zorgvuldig gekozen voor zijn werkzaamheid en natuurlijkheid.
+          </p>
+          <button class="collection-cta">Bekijk alles</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span class="footer-logo">alovi</span>
+    <p class="footer-tagline">Natuurlijke huidverzorging sinds 1994</p>
+    <div class="footer-links">
+      <a href="#">Lanèche</a>
+      <a href="#">Courtin</a>
+      <a href="#">Over ons</a>
+      <a href="#">Contact</a>
+      <a href="mailto:info@alovi.nl">info@alovi.nl</a>
+    </div>
+    <div class="footer-bottom">
+      © 2026, alovi — Gemaakt met liefde
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+
+    // Subtle parallax effect on hero wordmark
+    const heroWordmark = document.querySelector('.hero-wordmark');
+    const heroEyebrow = document.querySelector('.hero-eyebrow');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      const heroHeight = hero.offsetHeight;
+
+      if (scrolled < heroHeight) {
+        const yPos = scrolled * 0.25;
+        heroWordmark.style.transform = `translateY(${yPos}px)`;
+        heroEyebrow.style.transform = `translateX(-50%) translateY(${yPos * 0.5}px)`;
+      }
+    });
+
+    // Fade-up animation on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Navbar hide/show on scroll
+    const nav = document.querySelector('.nav');
+    let lastScroll = 0;
+    let isScrolling = false;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      // Hide on scroll down, show on scroll up
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('nav-hidden');
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+
+      lastScroll = currentScroll;
+    }, { passive: true });
+  </script>
+</body>
+</html>

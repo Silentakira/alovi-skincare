@@ -1,0 +1,217 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#ffffff;
+  --off-white:#f5f4f0;
+  --off-white-2:#eeecea;
+  --black:#1a1a18;
+  --black-mid:#3a3a36;
+  --muted:#8a8a84;
+  --olive:#7a6e45;
+  --olive-light:#a89c70;
+  --laneche-bg:#f0ede6;
+  --courtin-bg:#e8ede6;
+}
+.p{background:#fff;font-family:'Jost',sans-serif;color:var(--black);overflow-x:hidden}
+
+.ann{background:var(--black);color:#fff;text-align:center;padding:10px;font-size:12px;letter-spacing:.12em;font-weight:300}
+
+nav{background:#fff;border-bottom:1px solid rgba(0,0,0,.07);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nl{display:flex;gap:2.5rem}
+.nl a{font-size:13px;letter-spacing:.04em;color:var(--black);text-decoration:none;opacity:.6;font-weight:400}
+.nl a.act{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:var(--black);text-decoration:none;letter-spacing:.02em}
+.ni{display:flex;gap:1.2rem;align-items:center}
+.ni svg{width:18px;height:18px;stroke:var(--black);fill:none;stroke-width:1.4;cursor:pointer;opacity:.7}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:540px}
+.hl{background:var(--off-white);display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem}
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--olive);font-weight:400;margin-bottom:1.25rem}
+.h1{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;line-height:1.1;color:var(--black);margin-bottom:1.5rem}
+.h1 em{font-style:italic}
+.hbody{font-size:14px;color:var(--muted);line-height:1.85;max-width:340px;margin-bottom:2.5rem;font-weight:300}
+.cta{display:inline-block;padding:12px 30px;background:var(--black);color:#fff;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-weight:400}
+.hr{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.hi{overflow:hidden;position:relative;min-height:135px;display:flex;align-items:center;justify-content:center}
+.hi span{font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.45);font-family:'Jost',sans-serif;position:relative;z-index:1}
+.hi1{background:#c9c2b4}
+.hi2{background:#a4b09e}
+.hi3{background:#b8aea0}
+.hi4{background:#8d9e8a}
+.hil{position:absolute;bottom:10px;left:12px;font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.55);text-transform:uppercase}
+
+.brands{background:#fff;padding:5rem 3rem}
+.sl{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--olive);font-family:'Jost',sans-serif;text-align:center;margin-bottom:.6rem}
+.st{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;text-align:center;color:var(--black);margin-bottom:3rem}
+.bg{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:rgba(0,0,0,.07)}
+.bc{cursor:pointer;background:#fff}
+.bstrip{height:200px;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.1em;color:var(--muted)}
+.b1s{background:var(--laneche-bg)}
+.b2s{background:var(--courtin-bg)}
+.binfo{padding:2rem 2.5rem;background:#fff}
+.bname{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;letter-spacing:.06em;color:var(--black);margin-bottom:.3rem}
+.bsub{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:300;margin-bottom:1.25rem}
+.blink{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--black);text-decoration:none;font-weight:400;border-bottom:1px solid var(--black);padding-bottom:2px}
+
+.about{display:grid;grid-template-columns:1fr 1fr;background:var(--off-white)}
+.ai{background:#bbb5a8;min-height:460px;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.4)}
+.ac{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.ac .sl{text-align:left}
+.atitle{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;line-height:1.2;color:var(--black);margin:1rem 0 1.5rem}
+.abody{font-size:14px;color:var(--muted);line-height:1.9;font-weight:300;margin-bottom:.875rem}
+.asig{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--olive);margin-top:1.75rem}
+
+.prods{background:#fff;padding:5rem 3rem}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.pc{cursor:pointer}
+.pi{background:var(--off-white);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;margin-bottom:1.125rem;position:relative}
+.pi span{font-size:10px;letter-spacing:.1em;color:var(--muted)}
+.ptag{position:absolute;top:12px;left:12px;background:var(--black);color:#fff;font-size:9px;letter-spacing:.1em;padding:4px 10px;text-transform:uppercase}
+.pbrand{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--olive);margin-bottom:.35rem}
+.pname{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--black);margin-bottom:.35rem;line-height:1.3}
+.pprice{font-size:13px;color:var(--olive);font-weight:400}
+
+footer{border-top:1px solid rgba(0,0,0,.07);background:var(--off-white);padding:3.5rem 3rem 1.5rem}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2.5rem}
+.flt{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--black);margin-bottom:.6rem;display:block}
+.ftag{font-size:12px;color:var(--muted);font-weight:300;margin-bottom:.75rem}
+.femail{font-size:12px;color:var(--black);text-decoration:none;border-bottom:1px solid rgba(0,0,0,.18);padding-bottom:1px}
+.fct{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:.875rem}
+.fl{list-style:none}
+.fl li{margin-bottom:.5rem}
+.fl a{font-size:13px;color:var(--black);text-decoration:none;opacity:.55;font-weight:300}
+.fb{border-top:1px solid rgba(0,0,0,.07);padding-top:1.25rem;display:flex;justify-content:space-between}
+.fc,.fn{font-size:11px;color:var(--muted)}
+</style>
+
+<div class="p">
+  <div class="ann">Gratis verzending bij bestellingen vanaf €60</div>
+
+  <nav>
+    <div class="nl">
+      <a href="#" class="act">Homepage</a>
+      <a href="#">Lanèche</a>
+      <a href="#">Courtin</a>
+      <a href="#">Contact</a>
+    </div>
+    <a class="logo" href="#">alovi</a>
+    <div class="ni">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hl">
+      <p class="eyebrow">Huidverzorging since 1994</p>
+      <h1 class="h1">Jouw huid<br>verdient het <em>beste</em></h1>
+      <p class="hbody">Professionele huidverzorging die je thuis kunt voortzetten. Zorgvuldig geselecteerd door een specialist met meer dan 30 jaar ervaring.</p>
+      <a href="#" class="cta">Ontdek de collectie</a>
+    </div>
+    <div class="hr">
+      <div class="hi hi1"><span>foto</span><div class="hil">Lanèche</div></div>
+      <div class="hi hi2"><span>foto</span></div>
+      <div class="hi hi3"><span>foto</span></div>
+      <div class="hi hi4"><span>foto</span><div class="hil">Courtin</div></div>
+    </div>
+  </section>
+
+  <section class="brands">
+    <p class="sl">Onze merken</p>
+    <h2 class="st">Twee merken, één missie</h2>
+    <div class="bg">
+      <div class="bc">
+        <div class="bstrip b1s">[ Lanèche productfoto ]</div>
+        <div class="binfo">
+          <p class="bname">Lanèche</p>
+          <p class="bsub">Professionele huidverzorging</p>
+          <a href="#" class="blink">Bekijk collectie</a>
+        </div>
+      </div>
+      <div class="bc">
+        <div class="bstrip b2s">[ Courtin productfoto ]</div>
+        <div class="binfo">
+          <p class="bname">Courtin</p>
+          <p class="bsub">Natuurlijke Tea Tree formules</p>
+          <a href="#" class="blink">Bekijk collectie</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="ai">[ portretfoto ]</div>
+    <div class="ac">
+      <p class="sl">Over ons</p>
+      <h2 class="atitle">Dertig jaar passie<br>voor de huid</h2>
+      <p class="abody">Mijn verhaal in de wereld van uiterlijke verzorging is begonnen in 1994. Wat destijds startte als een passie voor het verzorgen is een passie voor de huid geworden.</p>
+      <p class="abody">Ik wil dat jij elke dag kunt genieten van dat heerlijke, verzorgde gevoel. Daarom heb ik met veel zorg een webshop samengesteld met producten die ik zelf ook in de salon gebruik.</p>
+      <div class="asig">alovi</div>
+    </div>
+  </section>
+
+  <section class="prods">
+    <p class="sl">Aanbevolen</p>
+    <h2 class="st">Uitgelichte producten</h2>
+    <div class="pg">
+      <div class="pc">
+        <div class="pi"><div class="ptag">Bestseller</div><span>foto</span></div>
+        <p class="pbrand">Lanèche</p>
+        <p class="pname">Level 00 Pro Care</p>
+        <p class="pprice">€34,50</p>
+      </div>
+      <div class="pc">
+        <div class="pi"><span>foto</span></div>
+        <p class="pbrand">Courtin</p>
+        <p class="pname">24h Crème</p>
+        <p class="pprice">€22,50</p>
+      </div>
+      <div class="pc">
+        <div class="pi"><span>foto</span></div>
+        <p class="pbrand">Courtin</p>
+        <p class="pname">100% Pure Tea Tree Oil</p>
+        <p class="pprice">€29,50</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fg">
+      <div>
+        <span class="flt">alovi</span>
+        <p class="ftag">Natuurlijke huidverzorging</p>
+        <a href="mailto:info@alovi.nl" class="femail">info@alovi.nl</a>
+      </div>
+      <div>
+        <p class="fct">Shop</p>
+        <ul class="fl">
+          <li><a href="#">Homepage</a></li>
+          <li><a href="#">Lanèche</a></li>
+          <li><a href="#">Courtin</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="fct">Informatie</p>
+        <ul class="fl">
+          <li><a href="#">Algemene Voorwaarden</a></li>
+          <li><a href="#">Privacybeleid</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="fct">Klantenservice</p>
+        <ul class="fl">
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Retourbeleid</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb">
+      <span class="fc">© 2026, alovi</span>
+      <span class="fn">Gemaakt met liefde</span>
+    </div>
+  </footer>
+</div>

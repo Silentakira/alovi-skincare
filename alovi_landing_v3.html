@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alovi | Natuurlijke Huidverzorging</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       DESIGN TOKENS
+       ============================================ */
+    :root {
+      /* Colors */
+      --white: #ffffff;
+      --off-white: #f5f4f0;
+      --off-white-dark: #ebe8e1;
+      --black: #1a1a18;
+      --black-muted: #3a3a36;
+      --muted: #8a8a84;
+      --muted-light: #b8b8b2;
+      --olive: #7a6e45;
+      --olive-light: #a89c70;
+      --olive-pale: #d4c9a8;
+
+      /* Brand Colors */
+      --laneche-warm: #f0ede6;
+      --laneche-warm-dark: #e8e5dd;
+      --courtin-sage: #e8ede6;
+      --courtin-sage-dark: #dce4d9;
+
+      /* Spacing Scale */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+      --space-4xl: 8rem;
+
+      /* Typography */
+      --font-serif: 'Cormorant Garamond', serif;
+      --font-sans: 'Jost', -apple-system, sans-serif;
+
+      /* Transitions */
+      --transition-fast: 150ms ease-out;
+      --transition-base: 250ms ease-out;
+      --transition-slow: 400ms ease-out;
+      --transition-slower: 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(26, 26, 24, 0.04);
+      --shadow-md: 0 4px 12px rgba(26, 26, 24, 0.06);
+      --shadow-lg: 0 12px 32px rgba(26, 26, 24, 0.08);
+      --shadow-hover: 0 20px 48px rgba(26, 26, 24, 0.12);
+
+      /* Border Radius */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+    }
+
+    /* ============================================
+       BASE & RESET
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color var(--transition-fast);
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    .section {
+      padding: var(--space-3xl) 0;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       ANNOUNCEMENT BAR
+       ============================================ */
+    .announcement-bar {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      font-weight: 400;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 100;
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid rgba(26, 26, 24, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      transition: border-color var(--transition-base);
+    }
+
+    .nav.scrolled {
+      border-bottom-color: rgba(26, 26, 24, 0.12);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: var(--space-xl);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--black-muted);
+      font-weight: 400;
+      position: relative;
+      padding: 4px 0;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--black);
+      transition: width var(--transition-base);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--black);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .logo {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--black);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      stroke: var(--black);
+      fill: none;
+      stroke-width: 1.3;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity var(--transition-fast), transform var(--transition-base);
+    }
+
+    .nav-icon:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      min-height: calc(100vh - 93px);
+      background: var(--off-white);
+    }
+
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--off-white-dark) 0%, var(--off-white) 100%);
+    }
+
+    .hero-image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      height: 100%;
+      gap: 1px;
+      background: rgba(26, 26, 24, 0.06);
+    }
+
+    .hero-image-item {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted-light);
+      transition: transform var(--transition-slower);
+    }
+
+    .hero-image-item:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-image-item:nth-child(1) {
+      background: linear-gradient(135deg, #d4c9a8 0%, #c9c2b4 100%);
+    }
+
+    .hero-image-item:nth-child(2) {
+      background: linear-gradient(135deg, #c9d4c4 0%, #a4b09e 100%);
+    }
+
+    .hero-image-item:nth-child(3) {
+      background: linear-gradient(135deg, #d4cfc4 0%, #b8aea0 100%);
+    }
+
+    .hero-image-item:nth-child(4) {
+      background: linear-gradient(135deg, #b8c9b4 0%, #8d9e8a 100%);
+    }
+
+    .hero-image-label {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-3xl) var(--space-2xl);
+      position: relative;
+    }
+
+    .hero-ghost-number {
+      position: absolute;
+      top: var(--space-xl);
+      right: var(--space-2xl);
+      font-family: var(--font-serif);
+      font-size: 120px;
+      font-weight: 300;
+      color: var(--off-white-dark);
+      line-height: 1;
+      opacity: 0.6;
+      user-select: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      font-weight: 500;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--olive);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--black);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--olive);
+    }
+
+    .hero-description {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 380px;
+      margin-bottom: var(--space-xl);
+      font-weight: 300;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+      border: 1px solid var(--black);
+    }
+
+    .btn-primary:hover {
+      background: var(--black-muted);
+      border-color: var(--black-muted);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--black);
+      border-bottom: 1px solid var(--muted);
+      padding: 14px 0;
+      border-radius: 0;
+    }
+
+    .btn-secondary:hover {
+      color: var(--olive);
+      border-color: var(--olive);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(26, 26, 24, 0.1);
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-stat-value {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ============================================
+       BRAND SHOWCASE
+       ============================================ */
+    .brands {
+      background: var(--white);
+      padding: var(--space-4xl) 0;
+    }
+
+    .brands-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .brands-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+    }
+
+    .brands-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 42px);
+      font-weight: 300;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+
+    .brands-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(26, 26, 24, 0.06);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .brand-card {
+      background: var(--white);
+      cursor: pointer;
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .brand-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .brand-image {
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 400;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-image.laneche {
+      background: linear-gradient(180deg, var(--laneche-warm) 0%, var(--laneche-warm-dark) 100%);
+    }
+
+    .brand-image.courtin {
+      background: linear-gradient(180deg, var(--courtin-sage) 0%, var(--courtin-sage-dark) 100%);
+    }
+
+    .brand-info {
+      padding: var(--space-xl) var(--space-lg);
+      text-align: center;
+    }
+
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--black);
+      margin-bottom: var(--space-xs);
+    }
+
+    .brand-tagline {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: var(--space-md);
+    }
+
+    .brand-link {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color var(--transition-fast), gap var(--transition-base);
+    }
+
+    .brand-link::after {
+      content: '→';
+      font-size: 14px;
+      transition: transform var(--transition-base);
+    }
+
+    .brand-link:hover {
+      color: var(--olive);
+      gap: 12px;
+    }
+
+    .brand-link:hover::after {
+      transform: translateX(4px);
+    }
+
+    /* ============================================
+       ABOUT SECTION
+       ============================================ */
+    .about {
+      background: var(--off-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+
+    .about-image {
+      background: linear-gradient(135deg, var(--off-white-dark) 0%, #d4cfc4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-content {
+      padding: var(--space-3xl) var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+    }
+
+    .about-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 42px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+    }
+
+    .about-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: var(--space-md);
+    }
+
+    .about-signature {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-style: italic;
+      color: var(--olive);
+      margin-top: var(--space-lg);
+    }
+
+    /* ============================================
+       FEATURED PRODUCTS
+       ============================================ */
+    .products {
+      background: var(--white);
+      padding: var(--space-4xl) 0;
+    }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: var(--space-3xl);
+    }
+
+    .products-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--olive);
+      font-weight: 500;
+      margin-bottom: var(--space-sm);
+    }
+
+    .products-title {
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4vw, 42px);
+      font-weight: 300;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      cursor: pointer;
+      group: product;
+    }
+
+    .product-image {
+      background: var(--off-white);
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: var(--space-md);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-base);
+    }
+
+    .product-card:hover .product-image {
+      transform: translateY(-4px);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      padding: 6px 12px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .product-brand {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--olive);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .product-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: var(--space-xs);
+      line-height: 1.3;
+      transition: color var(--transition-fast);
+    }
+
+    .product-card:hover .product-name {
+      color: var(--olive);
+    }
+
+    .product-price {
+      font-size: 14px;
+      color: var(--olive);
+      font-weight: 500;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      background: var(--off-white);
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+      padding: var(--space-3xl) 0 var(--space-lg);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .footer-brand .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: var(--space-sm);
+      display: block;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-email {
+      font-size: 13px;
+      color: var(--black);
+      border-bottom: 1px solid rgba(26, 26, 24, 0.2);
+      padding-bottom: 2px;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .footer-email:hover {
+      color: var(--olive);
+      border-color: var(--olive);
+    }
+
+    .footer-column-title {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--black);
+      opacity: 0.6;
+      font-weight: 300;
+      transition: opacity var(--transition-fast), color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--olive);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(26, 26, 24, 0.08);
+    }
+
+    .footer-copyright,
+    .footer-credit {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-visual {
+        height: 400px;
+      }
+
+      .hero-content {
+        padding: var(--space-2xl) var(--space-lg);
+      }
+
+      .hero-ghost-number {
+        font-size: 80px;
+        top: var(--space-md);
+        right: var(--space-lg);
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        height: 320px;
+      }
+
+      .brands-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 42px;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: var(--space-md);
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        padding: var(--space-2xl) 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-inner {
+        height: 60px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .hero-content {
+        padding: var(--space-lg) var(--space-md);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    Gratis verzending bij bestellingen vanaf €60
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <div class="nav-links">
+          <a href="#" class="nav-link active">Homepage</a>
+          <a href="#" class="nav-link">Lanèche</a>
+          <a href="#" class="nav-link">Courtin</a>
+          <a href="#" class="nav-link">Contact</a>
+        </div>
+
+        <a class="logo" href="#">alovi</a>
+
+        <div class="nav-icons">
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Zoeken">
+            <circle cx="11" cy="11" r="7"/>
+            <line x1="16.5" y1="16.5" x2="22" y2="22"/>
+          </svg>
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Account">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <svg class="nav-icon" viewBox="0 0 24 24" aria-label="Winkelwagen">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-visual">
+      <div class="hero-image-grid">
+        <div class="hero-image-item">
+          <span>foto</span>
+          <span class="hero-image-label">Lanèche</span>
+        </div>
+        <div class="hero-image-item">
+          <span>foto</span>
+        </div>
+        <div class="hero-image-item">
+          <span>foto</span>
+        </div>
+        <div class="hero-image-item">
+          <span>foto</span>
+          <span class="hero-image-label">Courtin</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <span class="hero-ghost-number">30</span>
+
+      <p class="hero-eyebrow">Huidverzorging since 1994</p>
+
+      <h1 class="hero-title">
+        Jouw huid<br>
+        verdient het <em>beste</em>
+      </h1>
+
+      <p class="hero-description">
+        Professionele huidverzorging die je thuis kunt voortzetten. Zorgvuldig geselecteerd door een specialist met meer dan 30 jaar ervaring.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#" class="btn btn-primary">Ontdek de collectie</a>
+        <a href="#" class="btn btn-secondary">Over ons verhaal</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">30+</span>
+          <span class="hero-stat-label">Jaar ervaring</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">2</span>
+          <span class="hero-stat-label">Premium merken</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">100%</span>
+          <span class="hero-stat-label">Specialist</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Showcase -->
+  <section class="brands">
+    <div class="container">
+      <div class="brands-header fade-in">
+        <p class="brands-eyebrow">Onze merken</p>
+        <h2 class="brands-title">Twee merken, één missie</h2>
+      </div>
+
+      <div class="brands-grid">
+        <div class="brand-card fade-in">
+          <div class="brand-image laneche">
+            <span>[ Lanèche productfoto ]</span>
+          </div>
+          <div class="brand-info">
+            <h3 class="brand-name">Lanèche</h3>
+            <p class="brand-tagline">Professionele huidverzorging</p>
+            <a href="#" class="brand-link">Bekijk collectie</a>
+          </div>
+        </div>
+
+        <div class="brand-card fade-in">
+          <div class="brand-image courtin">
+            <span>[ Courtin productfoto ]</span>
+          </div>
+          <div class="brand-info">
+            <h3 class="brand-name">Courtin</h3>
+            <p class="brand-tagline">Natuurlijke Tea Tree formules</p>
+            <a href="#" class="brand-link">Bekijk collectie</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-image fade-in">
+      <span>[ portretfoto ]</span>
+    </div>
+
+    <div class="about-content fade-in">
+      <p class="about-eyebrow">Over ons</p>
+      <h2 class="about-title">Dertig jaar passie voor de huid</h2>
+
+      <p class="about-text">
+        Mijn verhaal in de wereld van uiterlijke verzorging is begonnen in 1994. Wat destijds startte als een passie voor het verzorgen is een passie voor de huid geworden.
+      </p>
+
+      <p class="about-text">
+        Ik wil dat jij elke dag kunt genieten van dat heerlijke, verzorgde gevoel. Daarom heb ik met veel zorg een webshop samengesteld met producten die ik zelf ook in de salon gebruik.
+      </p>
+
+      <div class="about-signature">alovi</div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="products">
+    <div class="container">
+      <div class="products-header fade-in">
+        <p class="products-eyebrow">Aanbevolen</p>
+        <h2 class="products-title">Uitgelichte producten</h2>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card fade-in">
+          <div class="product-image">
+            <span class="product-tag">Bestseller</span>
+            <span>foto</span>
+          </div>
+          <p class="product-brand">Lanèche</p>
+          <h3 class="product-name">Level 00 Pro Care</h3>
+          <p class="product-price">€34,50</p>
+        </div>
+
+        <div class="product-card fade-in">
+          <div class="product-image">
+            <span>foto</span>
+          </div>
+          <p class="product-brand">Courtin</p>
+          <h3 class="product-name">24h Crème</h3>
+          <p class="product-price">€22,50</p>
+        </div>
+
+        <div class="product-card fade-in">
+          <div class="product-image">
+            <span>foto</span>
+          </div>
+          <p class="product-brand">Courtin</p>
+          <h3 class="product-name">100% Pure Tea Tree Oil</h3>
+          <p class="product-price">€29,50</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="footer-logo">alovi</span>
+          <p class="footer-tagline">Natuurlijke huidverzorging</p>
+          <a href="mailto:info@alovi.nl" class="footer-email">info@alovi.nl</a>
+        </div>
+
+        <div class="footer-column">
+          <p class="footer-column-title">Shop</p>
+          <ul class="footer-links">
+            <li><a href="#">Homepage</a></li>
+            <li><a href="#">Lanèche</a></li>
+            <li><a href="#">Courtin</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <p class="footer-column-title">Informatie</p>
+          <ul class="footer-links">
+            <li><a href="#">Algemene Voorwaarden</a></li>
+            <li><a href="#">Privacybeleid</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <p class="footer-column-title">Klantenservice</p>
+          <ul class="footer-links">
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Retourbeleid</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copyright">© 2026, alovi</span>
+        <span class="footer-credit">Gemaakt met liefde</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      lastScroll = currentScroll;
+    });
+
+    // Fade-in animation on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lanèche Level 00 Pro Care - De ultieme verzorging voor een stralende huid. Professionele huidverzorging die je thuis kunt voortzetten.">
+  <title>Level 00 Pro Care | Lanèche | Alovi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --off-white: #f7f6f3;
+      --sage-50: #f5f3f0;
+      --sage-100: #e8e5e0;
+      --sage-200: #d5d0c8;
+      --sage-300: #c0b9af;
+      --sage-400: #a8a094;
+      --sage: #8a8276;
+      --sage-600: #6d665c;
+      --near-black: #1c1c19;
+      --near-black-90: #2b2b27;
+      --near-black-80: #393935;
+      --near-black-60: #5a5a55;
+      --accent: #c4b49a;
+      --accent-light: #ddd3c5;
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.08);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --focus-ring: 0 0 0 3px rgba(138, 130, 118, 0.4);
+      --focus-ring-offset: 0 0 0 1px var(--near-black);
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+
+      --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--near-black);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--sage-200);
+      color: var(--near-black);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring), var(--focus-ring-offset);
+      border-radius: 4px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .pill-nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 8px 8px 24px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 100px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.4s var(--ease-out), opacity 0.4s var(--ease-out);
+    }
+
+    .pill-nav.nav-hidden {
+      transform: translateX(-50%) translateY(-120%);
+      opacity: 0;
+    }
+
+    .pill-nav .logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--near-black);
+      text-decoration: none;
+      margin-right: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .pill-nav nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pill-nav nav a {
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--near-black-60);
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.2s var(--ease-out);
+      white-space: nowrap;
+    }
+
+    .pill-nav nav a:hover {
+      color: var(--near-black);
+      background: var(--sage-100);
+    }
+
+    .pill-nav nav a.active {
+      color: var(--near-black);
+      background: var(--sage-50);
+    }
+
+    .announcement-bar {
+      background: var(--near-black);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+
+    .breadcrumb {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 100px 32px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--sage-600);
+    }
+
+    .breadcrumb a {
+      color: var(--sage-600);
+      text-decoration: none;
+      transition: color 0.2s var(--ease-out);
+    }
+
+    .breadcrumb a:hover {
+      color: var(--near-black);
+    }
+
+    .breadcrumb span {
+      color: var(--sage-400);
+    }
+
+    .product-hero {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .gallery {
+      position: sticky;
+      top: 100px;
+    }
+
+    .gallery-main {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--sage-50);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .gallery-main:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-badges {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .badge.bestseller {
+      color: #c9a876;
+    }
+
+    .badge.new {
+      color: var(--sage-600);
+    }
+
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .gallery-thumb {
+      aspect-ratio: 1;
+      background: var(--sage-50);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .gallery-thumb:hover,
+    .gallery-thumb.active {
+      border-color: var(--sage-300);
+      transform: translateY(-2px);
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding-top: 20px;
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-decoration: none;
+      margin-bottom: 16px;
+      transition: color 0.2s var(--ease-out);
+    }
+
+    .brand-link:hover {
+      color: var(--sage-600);
+    }
+
+    .brand-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .product-title {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--near-black);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .product-tagline {
+      font-size: 16px;
+      color: var(--sage-600);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 2px;
+      color: #c9a876;
+    }
+
+    .stars svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .review-count {
+      font-size: 13px;
+      color: var(--sage);
+      text-decoration: none;
+      transition: color 0.2s var(--ease-out);
+    }
+
+    .review-count:hover {
+      color: var(--sage-600);
+    }
+
+    .product-price {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--sage-100);
+    }
+
+    .price-current {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--near-black);
+    }
+
+    .price-unit {
+      font-size: 14px;
+      color: var(--sage-600);
+      font-weight: 300;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--sage-200);
+      border-radius: var(--radius-full);
+      padding: 4px;
+    }
+
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--near-black-60);
+      transition: all 0.2s var(--ease-out);
+    }
+
+    .quantity-btn:hover {
+      background: var(--sage-100);
+      color: var(--near-black);
+    }
+
+    .quantity-value {
+      width: 48px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .add-to-cart {
+      flex: 1;
+      padding: 16px 32px;
+      background: var(--near-black);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .add-to-cart:hover {
+      background: var(--near-black-90);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .add-to-cart:active {
+      transform: translateY(0);
+    }
+
+    .add-to-cart svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .product-trust {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+      padding: 24px;
+      background: var(--sage-50);
+      border-radius: var(--radius-md);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trust-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--sage);
+      flex-shrink: 0;
+    }
+
+    .trust-text {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--near-black-60);
+    }
+
+    .accordion {
+      border-top: 1px solid var(--sage-100);
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--sage-100);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .accordion-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--near-black);
+    }
+
+    .accordion-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--sage);
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .accordion-trigger[aria-expanded="true"] .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out), opacity 0.4s var(--ease-out);
+      opacity: 0;
+    }
+
+    .accordion-trigger[aria-expanded="true"] + .accordion-content {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .accordion-body {
+      padding-bottom: 24px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--near-black-60);
+    }
+
+    .accordion-body ul {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .accordion-body li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+    }
+
+    .accordion-body li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--sage);
+    }
+
+    .benefits-section {
+      background: var(--off-white);
+      padding: 80px 32px;
+    }
+
+    .benefits-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .benefit-card {
+      text-align: center;
+    }
+
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .benefit-icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--sage);
+    }
+
+    .benefit-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--near-black);
+      margin-bottom: 8px;
+    }
+
+    .benefit-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--sage-600);
+    }
+
+    .ingredients-section {
+      padding: 80px 32px;
+    }
+
+    .ingredients-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .ingredients-image {
+      aspect-ratio: 1;
+      background: var(--sage-100);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .ingredients-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ingredients-content h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--near-black);
+      margin-bottom: 24px;
+    }
+
+    .ingredients-content p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--near-black-60);
+      margin-bottom: 20px;
+    }
+
+    .ingredient-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .ingredient-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--near-black-60);
+    }
+
+    .ingredient-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--sage);
+    }
+
+    .reviews-section {
+      background: var(--off-white);
+      padding: 80px 32px;
+    }
+
+    .reviews-header {
+      max-width: 1100px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .reviews-header h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--near-black);
+      margin-bottom: 12px;
+    }
+
+    .reviews-header p {
+      font-size: 14px;
+      color: var(--sage-600);
+    }
+
+    .reviews-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .review-card {
+      background: var(--white);
+      padding: 32px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .review-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--sage-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--sage);
+    }
+
+    .review-meta {
+      flex: 1;
+    }
+
+    .review-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--near-black);
+      margin-bottom: 2px;
+    }
+
+    .review-verified {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--sage);
+    }
+
+    .review-verified svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 12px;
+    }
+
+    .review-stars svg {
+      width: 14px;
+      height: 14px;
+      fill: #c9a876;
+    }
+
+    .review-text {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--near-black-60);
+    }
+
+    .related-section {
+      padding: 80px 32px;
+    }
+
+    .related-header {
+      max-width: 1400px;
+      margin: 0 auto 40px;
+    }
+
+    .related-header h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--near-black);
+    }
+
+    .related-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .related-card {
+      group: 1;
+    }
+
+    .related-image {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--sage-50);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .related-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s var(--ease-out);
+    }
+
+    .related-card:hover .related-image img {
+      transform: scale(1.08);
+    }
+
+    .related-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      transform: translateY(100%);
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .related-card:hover .related-overlay {
+      transform: translateY(0);
+    }
+
+    .related-cta {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--white);
+      color: var(--near-black);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+    }
+
+    .related-brand {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 4px;
+    }
+
+    .related-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--near-black);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .related-price {
+      font-size: 14px;
+      color: var(--near-black-60);
+    }
+
+    footer {
+      border-top: 1px solid var(--sage-100);
+      padding: 48px 32px 24px;
+      background: var(--off-white);
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto 40px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand .logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--near-black);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--sage-600);
+      margin-bottom: 12px;
+    }
+
+    .footer-brand a {
+      font-size: 13px;
+      color: var(--near-black-60);
+      text-decoration: none;
+      border-bottom: 1px solid var(--sage-200);
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage-600);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      font-size: 13px;
+      color: var(--near-black-60);
+      text-decoration: none;
+      transition: color 0.2s var(--ease-out);
+    }
+
+    .footer-col a:hover {
+      color: var(--near-black);
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--sage-100);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: var(--sage);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social a {
+      color: var(--sage-600);
+      transition: color 0.2s var(--ease-out);
+    }
+
+    .footer-social a:hover {
+      color: var(--near-black);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    @media (max-width: 1024px) {
+      .product-hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .gallery {
+        position: static;
+      }
+
+      .benefits-grid,
+      .reviews-grid,
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ingredients-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-title {
+        font-size: 36px;
+      }
+
+      .benefits-grid,
+      .reviews-grid,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-trust {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .product-actions {
+        flex-direction: column;
+      }
+
+      .ingredient-list {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="pill-nav">
+    <a href="#" class="logo">alovi</a>
+    <nav>
+      <a href="#" class="active">Product</a>
+      <a href="#">Lanèche</a>
+      <a href="#">Courtin</a>
+      <a href="#">Over ons</a>
+      <a href="#">Contact</a>
+    </nav>
+  </nav>
+
+  <div class="announcement-bar">
+    Gratis verzending bij bestellingen vanaf €60 · 30 dagen retourrecht
+  </div>
+
+  <nav class="breadcrumb">
+    <a href="#">Home</a>
+    <span>/</span>
+    <a href="#">Lanèche</a>
+    <span>/</span>
+    <span>Level 00 Pro Care</span>
+  </nav>
+
+  <section class="product-hero">
+    <div class="gallery">
+      <div class="gallery-main">
+        <div class="gallery-badges">
+          <span class="badge bestseller">Bestseller</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&h=1000&fit=crop" alt="Lanèche Level 00 Pro Care">
+      </div>
+      <div class="gallery-thumbs">
+        <div class="gallery-thumb active">
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&h=200&fit=crop" alt="Product voorbeeld 1">
+        </div>
+        <div class="gallery-thumb">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop" alt="Product voorbeeld 2">
+        </div>
+        <div class="gallery-thumb">
+          <img src="https://images.unsplash.com/photo-1571875257727-256c39da42af?w=200&h=200&fit=crop" alt="Product voorbeeld 3">
+        </div>
+        <div class="gallery-thumb">
+          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=200&h=200&fit=crop" alt="Product voorbeeld 4">
+        </div>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <a href="#" class="brand-link">
+        Lanèche
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+
+      <h1 class="product-title">Level 00 Pro Care</h1>
+      <p class="product-tagline">De ultieme verzorging voor een stralende huid. Professionele kracht, zachte werking.</p>
+
+      <div class="product-rating">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <a href="#reviews" class="review-count">247 reviews</a>
+      </div>
+
+      <div class="product-price">
+        <span class="price-current">€34,50</span>
+        <span class="price-unit">per 50ml</span>
+      </div>
+
+      <div class="product-actions">
+        <div class="quantity-selector">
+          <button class="quantity-btn" aria-label="Verminder aantal">−</button>
+          <span class="quantity-value">1</span>
+          <button class="quantity-btn" aria-label="Verhoog aantal">+</button>
+        </div>
+        <button class="add-to-cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          Toevoegen aan winkelmand
+        </button>
+      </div>
+
+      <div class="product-trust">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+          <span class="trust-text">Gratis verzending vanaf €60</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span class="trust-text">30 dagen retourrecht</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+          <span class="trust-text">Professioneel advies</span>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">Beschrijving</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Level 00 Pro Care is het vlaggenschip van Lanèche. Deze geavanceerde formule combineert krachtige antioxidanten met hydraterende ingredienten om je huid te beschermen, voeden en vernieuwen.</p>
+              <p>Ontwikkeld door huidtherapeuten met meer dan 30 jaar ervaring. Dagelijks gebruik zorgt voor een zichtbaar gladdere, egalere en stralende huid.</p>
+              <p><strong>Geschikt voor:</strong> Alle huidtypes, ook de gevoelige huid</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">Ingrediënten</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Hoofdingrediënten:</strong></p>
+              <ul>
+                <li>Vitamine C - Beschermt tegen vrije radicalen</li>
+                <li>Hyaluronzuur - Intensieve hydratatie</li>
+                <li>Peptiden - Stimuleert collageenproductie</li>
+                <li>Niacinamide - Kalmeert en verfijnt poriën</li>
+                <li>Natuurlijke oliën - Voedt en herstelt</li>
+              </ul>
+              <p style="margin-top: 16px; font-size: 12px; color: var(--sage);">Volledige ingrediëntenlijst beschikbaar op de verpakking.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">Gebruik</span>
+            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>'s Ochtends en 's avonds aanbrengen op een gereinigde huid.</strong></p>
+              <p>Neem een hoeveelheid ter grootte van een erwt en masseer zachtjes in met opwaartse bewegingen. Laat goed intrekken voordat je je dagcrème of nachtcrème aanbrengt.</p>
+              <p style="margin-top: 12px;"><strong>Tip:</strong> Voor optimaal resultaat combineer je dit serum met de Lanèche Moisturizer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits-section">
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <h3 class="benefit-title">Professionele Kwaliteit</h3>
+        <p class="benefit-text">Door huidtherapeuten ontwikkeld. Dezelfde kwaliteit als in de salon.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3 class="benefit-title">Wetenschappelijk Bewezen</h3>
+        <p class="benefit-text">96% van de gebruikers ziet resultaat binnen 4 weken.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="benefit-title">Veilig & Betrouwbaar</h3>
+        <p class="benefit-text">Dermatologisch getest. Vrij van parabenen en sulfaten.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ingredients-section">
+    <div class="ingredients-container">
+      <div class="ingredients-image">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=600&fit=crop" alt="Natuurlijke ingrediënten">
+      </div>
+      <div class="ingredients-content">
+        <h2>Kracht uit de Natuur</h2>
+        <p>Wij geloven in de synergie tussen natuur en wetenschap. Onze ingrediënten worden zorgvuldig geselecteerd op basis van hun werkzaamheid en zuiverheid.</p>
+        <p>Elk ingrediënt in Level 00 Pro Care heeft een specifieke functie. Van beschermende antioxidanten tot hydraterende oliën - alles werkt samen voor een optimale huidconditie.</p>
+        <div class="ingredient-list">
+          <div class="ingredient-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            Vitamine C 15%
+          </div>
+          <div class="ingredient-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            Hyaluronzuur 2%
+          </div>
+          <div class="ingredient-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            Peptide Complex
+          </div>
+          <div class="ingredient-item">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            Niacinamide 5%
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews-section" id="reviews">
+    <div class="reviews-header">
+      <h2>Wat onze klanten zeggen</h2>
+      <p>Meer dan 247 beoordelingen met een gemiddelde van 4.8 sterren</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">M</div>
+          <div class="review-meta">
+            <p class="review-name">Maria S.</p>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Geverifieerde koper
+            </div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Na 3 weken zag ik al een enorm verschil. Mijn huid is veel zachter en de fijne lijntjes zijn minder zichtbaar. Absoluut de moeite waard!"</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">L</div>
+          <div class="review-meta">
+            <p class="review-name">Laura K.</p>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Geverifieerde koper
+            </div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Eindelijk een product dat doet wat het belooft. Ik heb al veel dure creams geprobeerd, maar dit is echt de beste investering voor mijn huid."</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">A</div>
+          <div class="review-meta">
+            <p class="review-name">Anna P.</p>
+            <div class="review-verified">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              Geverifieerde koper
+            </div>
+          </div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Mijn huidtherapeute raadde dit product aan. Nu begrijp ik waarom. Mijn huid heeft nog nooit zo goed uitgezien. Perfect voor de gevoelige huid!"</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="related-header">
+      <h2>Vaak samen gekocht</h2>
+    </div>
+    <div class="related-grid">
+      <div class="related-card">
+        <div class="related-image">
+          <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?w=400&h=500&fit=crop" alt="Lanèche Moisturizer">
+          <div class="related-overlay">
+            <a href="#" class="related-cta">Bekijk</a>
+          </div>
+        </div>
+        <p class="related-brand">Lanèche</p>
+        <p class="related-name">Moisturizer Rich</p>
+        <p class="related-price">€42,00</p>
+      </div>
+
+      <div class="related-card">
+        <div class="related-image">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=500&fit=crop" alt="Lanèche Cleanser">
+          <div class="related-overlay">
+            <a href="#" class="related-cta">Bekijk</a>
+          </div>
+        </div>
+        <p class="related-brand">Lanèche</p>
+        <p class="related-name">Gentle Cleanser</p>
+        <p class="related-price">€28,50</p>
+      </div>
+
+      <div class="related-card">
+        <div class="related-image">
+          <img src="https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&h=500&fit=crop" alt="Courtin 24h Cream">
+          <div class="related-overlay">
+            <a href="#" class="related-cta">Bekijk</a>
+          </div>
+        </div>
+        <p class="related-brand">Courtin</p>
+        <p class="related-name">24h Crème</p>
+        <p class="related-price">€22,50</p>
+      </div>
+
+      <div class="related-card">
+        <div class="related-image">
+          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=400&h=500&fit=crop" alt="Courtin Tea Tree Oil">
+          <div class="related-overlay">
+            <a href="#" class="related-cta">Bekijk</a>
+          </div>
+        </div>
+        <p class="related-brand">Courtin</p>
+        <p class="related-name">100% Tea Tree Oil</p>
+        <p class="related-price">€29,50</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">alovi</a>
+        <p>Natuurlijke huidverzorging sinds 1994</p>
+        <a href="mailto:info@alovi.nl">info@alovi.nl</a>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Alle producten</a></li>
+          <li><a href="#">Lanèche collectie</a></li>
+          <li><a href="#">Courtin collectie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informatie</h4>
+        <ul>
+          <li><a href="#">Over ons</a></li>
+          <li><a href="#">Algemene voorwaarden</a></li>
+          <li><a href="#">Privacybeleid</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Klantenservice</h4>
+        <ul>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Verzenden & Retourneren</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 alovi · Alle rechten voorbehouden</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar hide on scroll
+    const nav = document.querySelector('.pill-nav');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('nav-hidden');
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+      lastScroll = currentScroll;
+    }, { passive: true });
+
+    // Accordion functionality
+    document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', !expanded);
+      });
+    });
+
+    // Quantity selector
+    const quantityBtns = document.querySelectorAll('.quantity-btn');
+    const quantityValue = document.querySelector('.quantity-value');
+    let quantity = 1;
+
+    quantityBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.textContent === '−' && quantity > 1) {
+          quantity--;
+        } else if (btn.textContent === '+') {
+          quantity++;
+        }
+        quantityValue.textContent = quantity;
+      });
+    });
+
+    // Gallery thumbnail click
+    document.querySelectorAll('.gallery-thumb').forEach((thumb, index) => {
+      thumb.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
